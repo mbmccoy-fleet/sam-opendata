@@ -316,6 +316,10 @@ def main():
         # Keep last occurrence (most recently updated)
         df = df.drop_duplicates(subset=["uei", "snapshot_date"], keep="last")
 
+        # Ensure column order matches table schema
+        table_cols = [desc[0] for desc in con.execute("DESCRIBE registrations").fetchall()]
+        df = df[table_cols]
+
         con.execute("INSERT OR REPLACE INTO registrations SELECT * FROM df")
         print(f"  Loaded {len(df):,} records (snapshot: {rows[0]['snapshot_date']})")
         loaded_any = True

@@ -9,10 +9,14 @@ wheels/
 # Virtual environments
 .venv
 
-# Data files (use download_data.sh to fetch)
+# Data files (large, use download_sam.py to manage)
 data/
 *.duckdb
 *.duckdb.wal
+
+# Generated artifacts
+file_manifest.json
+entity_fields_complete.txt
 
 # Environment
 .env
